@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glorious Builders — Modern Website Redesign</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0E0C09;--gold:#B8913A;--gold2:#D4AD60;--sand:#F7F3EC;--sandmid:#EDE6D8;--sandark:#C8BDA8;--slate:#3D3830;--muted:#7A7060;--white:#FFFFFF;--coal:#151210}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:var(--coal);border-bottom:1px solid rgba(184,145,58,0.25);position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:14px}
+.logo-emblem{width:34px;height:34px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--gold)}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--white);letter-spacing:.04em}
+.logo-name span{color:var(--gold)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);background:transparent;padding:8px 20px;cursor:pointer;transition:all .15s}
+.nav-cta:hover{background:var(--gold);color:var(--coal)}
+.hero{background:var(--coal);position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 400px;min-height:600px}
+.hero-content{padding:5rem 3.5rem 4.5rem 3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:2}
+.hero-kicker{display:flex;align-items:center;gap:14px;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:2.2rem}
+.hero-kicker::after{content:'';height:1px;background:rgba(184,145,58,.3);width:60px}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;line-height:1.02;color:var(--white);letter-spacing:-.01em}
+.hero-h1 em{color:var(--gold);font-style:italic}
+.hero-h1 strong{font-weight:600;display:block}
+.hero-sub{font-size:14px;font-weight:300;line-height:1.8;color:rgba(255,255,255,.45);max-width:460px;margin-top:2rem}
+.hero-btns{display:flex;gap:12px;margin-top:2.8rem;flex-wrap:wrap}
+.btn-g{background:var(--gold);color:var(--coal);border:none;padding:13px 28px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .15s}
+.btn-g:hover{background:var(--gold2)}
+.btn-w{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.18);padding:13px 28px;font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.btn-w:hover{border-color:rgba(255,255,255,.4);color:var(--white)}
+.hero-nums{display:flex;gap:3.5rem;padding-top:2.8rem;border-top:1px solid rgba(255,255,255,.08)}
+.hnum-n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--white);line-height:1}
+.hnum-n sup{font-size:1.5rem;color:var(--gold);vertical-align:top;margin-top:4px}
+.hnum-l{font-size:10px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:6px}
+.hero-right{background:var(--slate);position:relative;overflow:hidden}
+.hero-photo{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600607687939-ce8a6d360bd7?w=700&q=85') center/cover;opacity:.38}
+.hero-grid-lines{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(184,145,58,.08) 39px,rgba(184,145,58,.08) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(184,145,58,.08) 39px,rgba(184,145,58,.08) 40px)}
+.hero-badge{position:absolute;bottom:0;left:0;right:0;background:var(--coal);border-top:2px solid var(--gold);padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
+.badge-r{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;color:var(--white);line-height:1}
+.badge-r span{color:var(--gold);font-size:1.5rem}
+.badge-s{font-size:10px;color:rgba(255,255,255,.32);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.badge-tag{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--coal);background:var(--gold);padding:6px 12px}
+.strip{background:var(--gold);padding:11px 0;overflow:hidden;display:flex}
+.strip-track{display:flex;animation:marquee 32s linear infinite;white-space:nowrap}
+.strip-item{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--coal);padding:0 2.2rem;border-right:1px solid rgba(14,12,9,.18);flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sec{padding:6rem 3rem}
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+.sec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3.1rem);font-weight:300;line-height:1.12;color:var(--ink)}
+.sec-h2 em{font-style:italic;color:var(--gold)}
+.sec-services{background:var(--sand)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--sandark);margin-top:3.5rem}
+.svc-card{padding:2.5rem 2.2rem;border-right:1px solid var(--sandark);border-bottom:1px solid var(--sandark);background:var(--white);cursor:pointer;position:relative;transition:background .2s}
+.svc-card:nth-child(3n){border-right:none}
+.svc-card:nth-last-child(-n+3){border-bottom:none}
+.svc-card:hover{background:var(--coal)}
+.svc-card:hover .svc-n,.svc-card:hover .svc-d{color:rgba(255,255,255,.45)!important}
+.svc-card:hover .svc-t{color:var(--white)!important}
+.svc-card:hover .svc-p{color:var(--gold2)!important}
+.svc-card:hover .svc-arr{opacity:1}
+.svc-n{font-size:10px;font-weight:400;letter-spacing:.15em;color:var(--sandark);margin-bottom:1.5rem}
+.svc-t{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--ink);margin-bottom:.8rem;transition:color .2s}
+.svc-d{font-size:12.5px;font-weight:300;line-height:1.68;color:var(--muted);margin-bottom:1.2rem;transition:color .2s}
+.svc-p{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);transition:color .2s}
+.svc-arr{position:absolute;bottom:2.2rem;right:2.2rem;font-size:1.2rem;opacity:0;transition:opacity .2s;color:var(--gold)}
+.about-split{display:grid;grid-template-columns:1fr 1fr;background:var(--coal)}
+.about-left{padding:5.5rem 3.5rem 5.5rem 3rem;border-right:1px solid rgba(255,255,255,.06)}
+.about-left .sec-h2{color:var(--white)}
+.about-body{font-size:13.5px;font-weight:300;line-height:1.85;color:rgba(255,255,255,.42);margin-top:2rem}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);margin-top:3.5rem}
+.metric{background:var(--coal);padding:2rem 1.8rem}
+.metric-n{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--white);line-height:1}
+.metric-n span{color:var(--gold)}
+.metric-l{font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:7px}
+.about-right{position:relative;overflow:hidden;min-height:500px}
+.about-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=85') center/cover;opacity:.3}
+.about-right-inner{position:relative;z-index:2;padding:5.5rem 3rem 5.5rem 3.5rem;height:100%;display:flex;flex-direction:column;gap:1rem}
+.gcard{background:rgba(14,12,9,.8);border:1px solid rgba(184,145,58,.15);padding:1.5rem 1.6rem;display:flex;align-items:center;gap:18px}
+.gcard-icon{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--gold);line-height:1;min-width:54px;text-align:center}
+.gcard-t{font-size:13px;font-weight:500;color:rgba(255,255,255,.85);margin-bottom:3px}
+.gcard-s{font-size:11.5px;font-weight:300;color:rgba(255,255,255,.32)}
+.sec-process{background:var(--sandmid)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--sandark);margin-top:3.5rem}
+.pstep{padding:2.2rem 1.8rem;border-right:1px solid var(--sandark)}
+.pstep:last-child{border-right:none}
+.pstep-line{width:28px;height:2px;background:var(--gold);margin-bottom:1.4rem}
+.pstep-n{font-size:10px;font-weight:500;letter-spacing:.15em;color:var(--sandark);margin-bottom:.8rem}
+.pstep-t{font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-weight:400;color:var(--ink);margin-bottom:.7rem;line-height:1.25}
+.pstep-d{font-size:12px;font-weight:300;line-height:1.7;color:var(--muted)}
+.sec-pricing{background:var(--white)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sandmid);border:1px solid var(--sandmid);margin-top:3.5rem}
+.pcard{background:var(--white);padding:2.5rem 2.2rem;position:relative}
+.pcard.feat{background:var(--coal)}
+.pcard-tag{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.pcard-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;color:var(--ink);margin-bottom:1.4rem}
+.pcard.feat .pcard-name{color:var(--white)}
+.pcard-price{display:flex;align-items:baseline;gap:4px;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--sandmid)}
+.pcard.feat .pcard-price{border-bottom-color:rgba(255,255,255,.1)}
+.price-n{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:300;color:var(--ink);line-height:1}
+.pcard.feat .price-n{color:var(--gold)}
+.price-u{font-size:11px;color:var(--muted);font-weight:300}
+.pcard.feat .price-u{color:rgba(255,255,255,.35)}
+.pcard-feats{list-style:none}
+.pcard-feats li{font-size:13px;font-weight:300;color:var(--muted);padding:5px 0;display:flex;align-items:center;gap:10px}
+.pcard.feat .pcard-feats li{color:rgba(255,255,255,.5)}
+.pcard-feats li::before{content:'';width:3px;height:3px;background:var(--gold);flex-shrink:0}
+.pcard-btn{width:100%;margin-top:2rem;padding:11px;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--sandark);background:transparent;color:var(--slate);cursor:pointer;transition:all .15s}
+.pcard-btn:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.pcard.feat .pcard-btn{background:var(--gold);color:var(--coal);border-color:var(--gold)}
+.pcard.feat .pcard-btn:hover{background:var(--gold2)}
+.sec-testi{background:var(--sand)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.tcard{border:1px solid var(--sandark);background:var(--white);padding:2.2rem}
+.tcard-stars{font-size:13px;letter-spacing:2px;color:var(--gold);margin-bottom:1.2rem}
+.tcard-text{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:300;font-style:italic;line-height:1.7;color:var(--slate);margin-bottom:1.5rem}
+.tcard-author{font-size:12.5px;font-weight:500;color:var(--ink)}
+.tcard-role{font-size:11px;font-weight:300;color:var(--gold);margin-top:3px}
+.sec-areas{background:var(--coal)}
+.sec-areas .sec-h2{color:var(--white)}
+.areas-wrap{margin-top:3rem;display:flex;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06);border-left:1px solid rgba(255,255,255,.06)}
+.area{padding:1rem 1.6rem;border-right:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);font-size:12px;font-weight:300;color:rgba(255,255,255,.38);cursor:pointer;min-width:170px;transition:all .15s}
+.area:hover,.area.on{color:var(--gold);background:rgba(184,145,58,.04)}
+.cta-band{background:var(--gold);padding:4rem 3rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2.5rem}
+.cta-t{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:300;color:var(--coal);line-height:1.2}
+.cta-t em{font-style:italic}
+.cta-sub{font-size:13px;font-weight:300;color:rgba(14,12,9,.58);margin-top:.5rem}
+.cta-btns{display:flex;gap:12px;flex-shrink:0}
+.btn-coal{background:var(--coal);color:var(--white);border:none;padding:13px 24px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.btn-coal:hover{opacity:.8}
+.btn-outline-coal{background:transparent;color:var(--coal);border:1px solid rgba(14,12,9,.32);padding:13px 24px;font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.footer{background:#090807;padding:4rem 3rem 2.5rem}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3.5rem}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--white);letter-spacing:.06em;margin-bottom:.8rem}
+.footer-brand span{color:var(--gold)}
+.footer-tagline{font-size:12px;font-weight:300;color:rgba(255,255,255,.22);line-height:1.7;max-width:230px}
+.footer-col-h{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:.6rem}
+.footer-links a{font-size:12.5px;font-weight:300;color:rgba(255,255,255,.28);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+.footer-bot{border-top:1px solid rgba(255,255,255,.06);padding-top:2rem;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:11px;font-weight:300;color:rgba(255,255,255,.18)}
+.footer-phone{font-size:13px;font-weight:500;color:var(--gold)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="logo-emblem">G</div>
+    <div class="logo-name">Glorious <span>Builders</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#areas">Areas</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Free Consultation</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div>
+        <div class="hero-kicker">Est. 2000 &nbsp;&middot;&nbsp; Lahore, Pakistan</div>
+        <h1 class="hero-h1">Where <em>craft</em><br><strong>meets concrete</strong></h1>
+        <p class="hero-sub">Lahore's most trusted construction house for 25 years. Grey structure, turnkey homes, and commercial builds across DHA, Bahria Town, and 40+ societies. Every project backed by a written 5-year warranty.</p>
+        <div class="hero-btns">
+          <button class="btn-g">Start Your Build</button>
+          <button class="btn-w">View Portfolio</button>
+        </div>
+      </div>
+      <div class="hero-nums">
+        <div><div class="hnum-n">500<sup>+</sup></div><div class="hnum-l">Projects</div></div>
+        <div><div class="hnum-n">25<sup>yr</sup></div><div class="hnum-l">Experience</div></div>
+        <div><div class="hnum-n">4.8<sup>&#9733;</sup></div><div class="hnum-l">Google Rating</div></div>
+        <div><div class="hnum-n">3</div><div class="hnum-l">Offices</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo"></div>
+      <div class="hero-grid-lines"></div>
+      <div class="hero-badge">
+        <div>
+          <div class="badge-r">4.8 <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div class="badge-s">250+ verified Google reviews</div>
+        </div>
+        <div class="badge-tag">Google Maps</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span class="strip-item">Grey Structure from Rs 3,250/sqft</span><span class="strip-item">5-Year Written Warranty</span><span class="strip-item">15-Year Structural Guarantee</span><span class="strip-item">Fixed-Price Contracts</span><span class="strip-item">DHA Phase 1&ndash;9</span><span class="strip-item">Bahria Town All Sectors</span><span class="strip-item">Zero DHA Drawing Rejections</span><span class="strip-item">Overseas Pakistani Specialists</span><span class="strip-item">London SW17 Office</span><span class="strip-item">BOQ Within 48 Hours</span><span class="strip-item">Grey Structure from Rs 3,250/sqft</span><span class="strip-item">5-Year Written Warranty</span><span class="strip-item">15-Year Structural Guarantee</span><span class="strip-item">Fixed-Price Contracts</span><span class="strip-item">DHA Phase 1&ndash;9</span><span class="strip-item">Bahria Town All Sectors</span><span class="strip-item">Zero DHA Drawing Rejections</span><span class="strip-item">Overseas Pakistani Specialists</span><span class="strip-item">London SW17 Office</span><span class="strip-item">BOQ Within 48 Hours</span>
+  </div>
+</div>
+
+<section class="sec sec-services" id="services">
+  <div class="eyebrow">What We Build</div>
+  <h2 class="sec-h2">Every service. <em>One warranty.</em></h2>
+  <div class="svc-grid">
+    <div class="svc-card"><div class="svc-n">01 &mdash; Construction</div><div class="svc-t">Grey Structure</div><div class="svc-d">Foundation to roof slab. Grade-60 rebar, DG Khan cement, DHA &amp; BTAP floor inspections on every project.</div><div class="svc-p">From Rs 3,250 / sqft</div><div class="svc-arr">&rarr;</div></div>
+    <div class="svc-card"><div class="svc-n">02 &mdash; Complete Build</div><div class="svc-t">Turnkey Construction</div><div class="svc-d">Move-in ready. Kitchen, bathrooms, flooring, electrical &mdash; one fixed price, one team, one contract.</div><div class="svc-p">From Rs 5,200 / sqft</div><div class="svc-arr">&rarr;</div></div>
+    <div class="svc-card"><div class="svc-n">03 &mdash; Residential</div><div class="svc-t">Luxury Homes</div><div class="svc-d">5 Marla to 4 Kanal. All Lahore societies. Bespoke architecture with modern structural engineering.</div><div class="svc-p">All plot sizes</div><div class="svc-arr">&rarr;</div></div>
+    <div class="svc-card"><div class="svc-n">04 &mdash; Design</div><div class="svc-t">Architectural Design</div><div class="svc-d">PCATP-licensed. 3D visualisation included. DHA submission guaranteed &mdash; zero rejections in 25 years.</div><div class="svc-p">From Rs 80,000</div><div class="svc-arr">&rarr;</div></div>
+    <div class="svc-card"><div class="svc-n">05 &mdash; Interiors</div><div class="svc-t">Interior Design</div><div class="svc-d">Modular kitchens, custom woodwork, false ceilings. Residential and commercial. 3D renders before work begins.</div><div class="svc-p">From Rs 1,800 / sqft</div><div class="svc-arr">&rarr;</div></div>
+    <div class="svc-card"><div class="svc-n">06 &mdash; Renovation</div><div class="svc-t">Remodelling</div><div class="svc-d">Kitchen, bathrooms, full house, elevation. All 40+ Lahore societies. 40&ndash;60% cheaper than a rebuild.</div><div class="svc-p">From Rs 800 / sqft</div><div class="svc-arr">&rarr;</div></div>
+  </div>
+</section>
+
+<section class="about-split" id="about">
+  <div class="about-left">
+    <div class="eyebrow">Who We Are</div>
+    <h2 class="sec-h2" style="color:var(--white)">Built on trust,<br><em>delivered on time</em></h2>
+    <p class="about-body">Since 2000, Glorious Builders has delivered over 500 residential and commercial projects across Lahore. We are one of Pakistan's few construction firms that puts every guarantee in writing &mdash; because a verbal promise is not a warranty.</p>
+    <p class="about-body" style="margin-top:1.2rem">Our clients include overseas Pakistanis in the UK, UAE, USA, and Canada who trust us to build their homes while abroad. Weekly video updates, transparent contracts, and principal-level oversight on every project.</p>
+    <div class="metrics-grid">
+      <div class="metric"><div class="metric-n">500<span>+</span></div><div class="metric-l">Projects Built</div></div>
+      <div class="metric"><div class="metric-n">25<span>yr</span></div><div class="metric-l">In Business</div></div>
+      <div class="metric"><div class="metric-n">4.8<span>&#9733;</span></div><div class="metric-l">Google Score</div></div>
+      <div class="metric"><div class="metric-n">40<span>+</span></div><div class="metric-l">Societies Served</div></div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-img"></div>
+    <div class="about-right-inner">
+      <div class="eyebrow">Our Commitments</div>
+      <div class="gcard"><div class="gcard-icon">5yr</div><div><div class="gcard-t">Construction Warranty</div><div class="gcard-s">Written in every contract &mdash; workmanship &amp; finishing</div></div></div>
+      <div class="gcard"><div class="gcard-icon">15yr</div><div><div class="gcard-t">Structural Guarantee</div><div class="gcard-s">Columns, beams, slabs &mdash; long-term integrity assured</div></div></div>
+      <div class="gcard"><div class="gcard-icon">&infin;</div><div><div class="gcard-t">Lifetime Support</div><div class="gcard-s">Post-handover guidance and maintenance coordination</div></div></div>
+      <div class="gcard"><div class="gcard-icon">0</div><div><div class="gcard-t">DHA Drawing Rejections</div><div class="gcard-s">PCATP-licensed &mdash; 25 years, 300+ submissions, zero rejections</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-process">
+  <div class="eyebrow">How It Works</div>
+  <h2 class="sec-h2">From first call<br>to <em>key handover</em></h2>
+  <div class="process-grid">
+    <div class="pstep"><div class="pstep-line"></div><div class="pstep-n">Step 01</div><div class="pstep-t">Free Consultation</div><div class="pstep-d">WhatsApp or in-office visit. We review your plot, requirements, and budget &mdash; same day response guaranteed.</div></div>
+    <div class="pstep"><div class="pstep-line"></div><div class="pstep-n">Step 02</div><div class="pstep-t">Design &amp; BOQ</div><div class="pstep-d">PCATP architects draw your plans. Full bill of quantities with every material specified by brand within 5 days.</div></div>
+    <div class="pstep"><div class="pstep-line"></div><div class="pstep-n">Step 03</div><div class="pstep-t">Fixed Contract</div><div class="pstep-d">Price locked at signing. Milestone payment schedule. Weekly Friday video updates from your site &mdash; unrequested.</div></div>
+    <div class="pstep"><div class="pstep-line"></div><div class="pstep-n">Step 04</div><div class="pstep-t">Key Handover</div><div class="pstep-d">On-time delivery with 5-year warranty certificate. 15-year structural guarantee. Lifetime post-build support.</div></div>
+  </div>
+</section>
+
+<section class="sec sec-pricing" id="pricing">
+  <div class="eyebrow">2026 Rates</div>
+  <h2 class="sec-h2">Transparent pricing.<br><em>No surprises.</em></h2>
+  <div class="price-grid">
+    <div class="pcard"><div class="pcard-tag">Grey Structure</div><div class="pcard-name">Economy Build</div><div class="pcard-price"><div class="price-n">Rs 3,250</div><div class="price-u">&nbsp;/ sqft</div></div><ul class="pcard-feats"><li>Foundation to roof slab</li><li>Grade-60 rebar standard</li><li>DG Khan / Lucky cement</li><li>Floor-by-floor inspection</li><li>5-year warranty included</li></ul><button class="pcard-btn">Get Quote &rarr;</button></div>
+    <div class="pcard feat"><div class="pcard-tag">Most Popular</div><div class="pcard-name">Turnkey Home</div><div class="pcard-price"><div class="price-n">Rs 5,200</div><div class="price-u">&nbsp;/ sqft</div></div><ul class="pcard-feats"><li>Complete grey structure</li><li>Kitchen &amp; bathroom fit-out</li><li>Flooring &amp; full electrical</li><li>Move-in ready finish</li><li>5-year full warranty</li></ul><button class="pcard-btn">Start Project &rarr;</button></div>
+    <div class="pcard"><div class="pcard-tag">Premium Grade</div><div class="pcard-name">Luxury Turnkey</div><div class="pcard-price"><div class="price-n">Rs 7,000+</div><div class="price-u">&nbsp;/ sqft</div></div><ul class="pcard-feats"><li>International premium materials</li><li>Custom interior design</li><li>Smart home integration</li><li>Landscaping included</li><li>5-year premium warranty</li></ul><button class="pcard-btn">Get Quote &rarr;</button></div>
+  </div>
+</section>
+
+<section class="sec sec-testi">
+  <div class="eyebrow">Client Stories</div>
+  <h2 class="sec-h2">What 500 completed<br><em>projects sound like</em></h2>
+  <div class="testi-grid">
+    <div class="tcard"><div class="tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tcard-text">&ldquo;Being overseas, it&rsquo;s not easy to trust your construction to anyone. From the first brick, I was completely comfortable. Waqas Rana personally keeps me updated on every call.&rdquo;</div><div class="tcard-author">Mohsen Shoukat</div><div class="tcard-role">Overseas Pakistani &middot; Etihad Town, Lahore</div></div>
+    <div class="tcard"><div class="tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tcard-text">&ldquo;We built our 1 Kanal home in Bahria Town from Dubai. Weekly video calls, fully transparent throughout. The quality exceeded every expectation &mdash; every neighbour has since asked who built it.&rdquo;</div><div class="tcard-author">Naveed Chaudhary</div><div class="tcard-role">Dubai, UAE &middot; 1 Kanal Turnkey, Bahria Town</div></div>
+    <div class="tcard"><div class="tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tcard-text">&ldquo;Hands down the best grey structure company in DHA. The masonry &mdash; especially tile and stonework &mdash; is immaculate. The 5-year warranty gives peace of mind no other company here offers.&rdquo;</div><div class="tcard-author">Kiran Ali</div><div class="tcard-role">5 Marla Grey Structure &middot; DHA Phase 6</div></div>
+  </div>
+</section>
+
+<section class="sec sec-areas" id="areas">
+  <div class="eyebrow">Coverage</div>
+  <h2 class="sec-h2">40+ Lahore societies.<br><em>Active projects now.</em></h2>
+  <div class="areas-wrap">
+    <div class="area on">DHA Phase 1&ndash;3</div><div class="area on">DHA Phase 4&ndash;5</div><div class="area on">DHA Phase 6 &#9733; Office</div><div class="area on">DHA Phase 7&ndash;8</div><div class="area on">DHA Phase 9 Prism</div><div class="area">Bahria Town Sec A&ndash;B</div><div class="area">Bahria Town Sec C &#9733; Office</div><div class="area">Bahria Town Sec D&ndash;F</div><div class="area">Bahria Orchard Ph 1&ndash;4</div><div class="area">Lake City All Sectors</div><div class="area">Etihad Town Ph 1&ndash;2</div><div class="area">Gulberg I&ndash;V</div><div class="area">Model Town</div><div class="area">Garden Town</div><div class="area">Johar Town</div><div class="area">Wapda Town</div><div class="area">Valencia Town</div><div class="area">Park View City</div><div class="area">Al Kabir Town</div><div class="area">Paragon City</div><div class="area">Fazaia Housing</div><div class="area">Askari 11</div><div class="area">Cantt &amp; Racecourse</div><div class="area">+ 17 more &rarr;</div>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <div>
+    <div class="cta-t">Ready to build something <em>extraordinary?</em></div>
+    <div class="cta-sub">Free site assessment &middot; BOQ within 48 hrs &middot; Fixed price contract &middot; 5-year warranty</div>
+  </div>
+  <div class="cta-btns">
+    <button class="btn-coal" onclick="window.open('https://wa.me/923239999450','_blank')">WhatsApp Us</button>
+    <button class="btn-outline-coal" onclick="window.location.href='tel:+923239999450'">+92 323 9999 450</button>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Glorious <span>Builders</span></div>
+      <div class="footer-tagline">Building excellence across Lahore and Pakistan since 2000. Offices in DHA Lahore, Bahria Town, and London SW17.</div>
+    </div>
+    <div>
+      <div class="footer-col-h">Services</div>
+      <ul class="footer-links"><li><a href="#services">Grey Structure</a></li><li><a href="#services">Turnkey Construction</a></li><li><a href="#services">Interior Design</a></li><li><a href="#services">Renovation</a></li><li><a href="#services">Architectural Design</a></li><li><a href="#services">Commercial Build</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Areas</div>
+      <ul class="footer-links"><li><a href="#areas">DHA Lahore</a></li><li><a href="#areas">Bahria Town</a></li><li><a href="#areas">Lake City</a></li><li><a href="#areas">Gulberg</a></li><li><a href="#areas">Overseas Pakistanis</a></li><li><a href="#areas">All 40+ Areas</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Contact</div>
+      <ul class="footer-links"><li><a href="tel:+923239999450">+92 323 9999 450</a></li><li><a href="mailto:cc@gloriousbuilders.com">cc@gloriousbuilders.com</a></li><li><a href="#">DHA Phase 6 Office</a></li><li><a href="#">Bahria Town Office</a></li><li><a href="#">London SW17 Office</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div class="footer-copy">&copy; 2026 Glorious Builders &mdash; Website redesign concept</div>
+    <div class="footer-phone">+92 323 9999 450</div>
+  </div>
+</footer>
+
+</body>
+</html>
